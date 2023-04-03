@@ -1,15 +1,12 @@
-/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * This source code is licensed under the MIT license found in the LICENSE
+ * file in the root directory of this source tree.
  */
-
 #include <gtest/gtest.h>
 #include <stdarg.h>
 #include <yoga/Yoga.h>
-
-#if DEBUG
 
 namespace {
 char writeBuffer[4096];
@@ -75,7 +72,8 @@ TEST(YogaTest, logger_default_node_should_print_no_style_info) {
   YGNodeCalculateLayout(root, YGUnitUndefined, YGUnitUndefined, YGDirectionLTR);
   YGNodePrint(
       root,
-      (YGPrintOptions) (YGPrintOptionsLayout | YGPrintOptionsChildren | YGPrintOptionsStyle));
+      (YGPrintOptions)(
+          YGPrintOptionsLayout | YGPrintOptionsChildren | YGPrintOptionsStyle));
   YGConfigSetLogger(config, NULL);
   YGNodeFree(root);
 
@@ -99,7 +97,8 @@ TEST(YogaTest, logger_node_with_percentage_absolute_position_and_margin) {
   YGNodeCalculateLayout(root, YGUnitUndefined, YGUnitUndefined, YGDirectionLTR);
   YGNodePrint(
       root,
-      (YGPrintOptions) (YGPrintOptionsLayout | YGPrintOptionsChildren | YGPrintOptionsStyle));
+      (YGPrintOptions)(
+          YGPrintOptionsLayout | YGPrintOptionsChildren | YGPrintOptionsStyle));
   YGConfigSetLogger(config, NULL);
   YGNodeFree(root);
 
@@ -122,7 +121,8 @@ TEST(YogaTest, logger_node_with_children_should_print_indented) {
   YGNodeCalculateLayout(root, YGUnitUndefined, YGUnitUndefined, YGDirectionLTR);
   YGNodePrint(
       root,
-      (YGPrintOptions) (YGPrintOptionsLayout | YGPrintOptionsChildren | YGPrintOptionsStyle));
+      (YGPrintOptions)(
+          YGPrintOptionsLayout | YGPrintOptionsChildren | YGPrintOptionsStyle));
   YGConfigSetLogger(config, NULL);
   YGNodeFreeRecursive(root);
 
@@ -133,5 +133,3 @@ TEST(YogaTest, logger_node_with_children_should_print_indented) {
       "style=\"\" ></div>\n</div>";
   ASSERT_STREQ(expected, writeBuffer);
 }
-
-#endif

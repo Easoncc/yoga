@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -10,10 +10,10 @@
 
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import EditValue from '../components/Playground/src/EditValue';
+import EditValue from '../components/Playground/EditValue';
 import Link from 'gatsby-link';
 import './DocsSidebar.css';
-import type {LayoutRecordT} from './Playground/src/LayoutRecord';
+import type {LayoutRecordT} from './Playground/LayoutRecord';
 
 const TAG_PATTERN = /<controls prop="([A-Za-z]+)"><\/controls>/gi;
 

@@ -1,10 +1,9 @@
-/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * This source code is licensed under the MIT license found in the LICENSE
+ * file in the root directory of this source tree.
  */
-
 #include <gtest/gtest.h>
 #include <yoga/YGNode.h>
 #include <ostream>
@@ -48,7 +47,7 @@ TEST(YGNode, measure_with_context_measure_fn) {
         return *(YGSize*) ctx;
       });
 
-  auto result = YGSize{123.4f, -56.7f};
+  auto result = YGSize{123.4, -56.7};
   ASSERT_EQ(
       n.measure(0, YGMeasureModeUndefined, 0, YGMeasureModeUndefined, &result),
       result);

@@ -1,6 +1,5 @@
-#!/usr/bin/env node
 /**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -10,27 +9,25 @@
 
 require(`./tools`);
 
-const fs = require(`fs`);
-const vm = require(`vm`);
+let fs = require(`fs`);
+let vm = require(`vm`);
 
-const WARMUP_ITERATIONS = 3;
-const BENCHMARK_ITERATIONS = 10;
+let WARMUP_ITERATIONS = 3;
+let BENCHMARK_ITERATIONS = 10;
 
-const testFiles = process.argv.slice(2).map((file) => {
+let testFiles = process.argv.slice(2).map(file => {
   return fs.readFileSync(file).toString();
 });
 
-const testResults = new Map();
+let testResults = new Map();
 
-for (const type of ["asmjs", "wasm"]) {
-  for (const file of testFiles) {
+for (let type of [`node`, `browser`]) {
+  for (let file of testFiles) {
     vm.runInNewContext(
       file,
       Object.assign(Object.create(global), {
-        Yoga: require(type === "asmjs"
-          ? "../dist/entrypoint/asmjs-sync"
-          : "../dist/entrypoint/wasm-sync"),
-        YGBENCHMARK: function (name, fn) {
+        Yoga: require(`../dist/entry-${type}`),
+        YGBENCHMARK: function(name, fn) {
           let testEntry = testResults.get(name);
 
           if (testEntry === undefined)
@@ -38,33 +35,33 @@ for (const type of ["asmjs", "wasm"]) {
 
           for (let t = 0; t < WARMUP_ITERATIONS; ++t) fn();
 
-          const start = Date.now();
+          let start = Date.now();
 
           for (let t = 0; t < BENCHMARK_ITERATIONS; ++t) fn();
 
-          const end = Date.now();
+          let end = Date.now();
 
           testEntry.set(type, (end - start) / BENCHMARK_ITERATIONS);
         },
-      })
+      }),
     );
   }
 }
 
 console.log(
-  `Note: those tests are independants; there is no time relation to be expected between them`
+  `Note: those tests are independants; there is no time relation to be expected between them`,
 );
 
-for (const [name, results] of testResults) {
+for (let [name, results] of testResults) {
   console.log();
 
-  const min = Math.min(Infinity, ...results.values());
+  let min = Math.min(Infinity, ...results.values());
 
   console.log(name);
 
-  for (const [type, result] of results) {
+  for (let [type, result] of results) {
     console.log(
-      `  - ${type}: ${result}ms (${Math.round((result / min) * 10000) / 100}%)`
+      `  - ${type}: ${result}ms (${Math.round((result / min) * 10000) / 100}%)`,
     );
   }
 }

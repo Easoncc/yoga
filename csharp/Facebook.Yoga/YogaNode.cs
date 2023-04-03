@@ -1,5 +1,5 @@
-/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -432,45 +432,6 @@ namespace Facebook.Yoga
             }
         }
 
-        public float Gap
-        {
-            get
-            {
-                return Native.YGNodeStyleGetGap(_ygNode, YogaGutter.All);
-            }
-
-            set
-            {
-                Native.YGNodeStyleSetGap(_ygNode, YogaGutter.All, value);
-            }
-        }
-
-        public float ColumnGap
-        {
-            get
-            {
-                return Native.YGNodeStyleGetGap(_ygNode, YogaGutter.Column);
-            }
-
-            set
-            {
-                Native.YGNodeStyleSetGap(_ygNode, YogaGutter.Column, value);
-            }
-        }
-
-        public float RowGap
-        {
-            get
-            {
-                return Native.YGNodeStyleGetGap(_ygNode, YogaGutter.Row);
-            }
-
-            set
-            {
-                Native.YGNodeStyleSetGap(_ygNode, YogaGutter.Row, value);
-            }
-        }
-
         public float LayoutX
         {
             get
@@ -711,6 +672,11 @@ namespace Facebook.Yoga
         {
             return _children != null ? ((IEnumerable<YogaNode>)_children).GetEnumerator() :
                 System.Linq.Enumerable.Empty<YogaNode>().GetEnumerator();
+        }
+
+        public static int GetInstanceCount()
+        {
+            return Native.YGNodeGetInstanceCount();
         }
     }
 }

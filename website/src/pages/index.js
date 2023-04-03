@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -12,7 +12,7 @@ import {Button} from 'antd';
 import React from 'react';
 import Page from '../components/Page';
 import Padded from '../components/Padded';
-import Playground from '../components/Playground/src';
+import Playground from '../components/Playground';
 import {Row, Col} from 'antd';
 import './index.css';
 import ReactNativeLogo from './logos/reactnative.png';
@@ -138,13 +138,16 @@ const AboutSectionOne = () => (
         <h3>ComponentKit</h3>
       </a>
       <a
-        href="https://reactnative.dev"
+        href="http://facebook.github.io/react-native/"
         target="_blank"
         className="logo">
         <img src={ReactNativeLogo} />
         <h3>React Native</h3>
       </a>
-      <a href="https://react-pdf.org/" target="_blank" className="logo">
+      <a
+        href="https://react-pdf.org/"
+        target="_blank"
+        className="logo">
         <img src={ReactPDFLogo} />
         <h3>React-PDF</h3>
       </a>

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -10,9 +10,9 @@
 
 import React, {Component} from 'react';
 import Page from '../components/Page';
-import Playground from '../components/Playground/src';
+import Playground from '../components/Playground';
 import DocsSidebar from '../components/DocsSidebar';
-import EditValue from '../components/Playground/src/EditValue';
+import EditValue from '../components/Playground/EditValue';
 import Link from 'gatsby-link';
 import {Button, Icon, Row, Col} from 'antd';
 import './index.css';

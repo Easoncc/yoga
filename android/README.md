@@ -4,11 +4,11 @@
 
 YogaLayout is available via jcenter:
 
-    implementation 'com.facebook.yoga.android:yoga-layout:1.16.0'
+    compile 'com.facebook.yoga.android:yoga-layout:1.2.0'
 
 ## Getting Started
 
-Check out the docs [here](https://yogalayout.com/getting-started/standalone/).
+Check out the docs [here](https://facebook.github.io/yoga/docs/api/android/).
 
 We also have a sample project.  To try it, clone the repo and run (with a device attached)
 

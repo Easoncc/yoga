@@ -1,10 +1,9 @@
-/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * This source code is licensed under the MIT license found in the LICENSE
+ * file in the root directory of this source tree.
  */
-
 #include <gtest/gtest.h>
 #include <yoga/YGNode.h>
 #include <yoga/Yoga.h>
@@ -57,8 +56,8 @@ TEST(YogaTest, rounding_feature_with_custom_measure_func_floor) {
 
   YGNodeCalculateLayout(root, YGUndefined, YGUndefined, YGDirectionRTL);
 
-  ASSERT_FLOAT_EQ(10.2f, YGNodeLayoutGetWidth(root_child0));
-  ASSERT_FLOAT_EQ(10.2f, YGNodeLayoutGetHeight(root_child0));
+  ASSERT_FLOAT_EQ(10.2, YGNodeLayoutGetWidth(root_child0));
+  ASSERT_FLOAT_EQ(10.2, YGNodeLayoutGetHeight(root_child0));
 
   YGConfigSetPointScaleFactor(config, 1.0f);
 

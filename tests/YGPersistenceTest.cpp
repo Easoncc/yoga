@@ -1,17 +1,12 @@
-/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * This source code is licensed under the MIT license found in the LICENSE
+ * file in the root directory of this source tree.
  */
-
 #include <gtest/gtest.h>
 #include <yoga/Yoga.h>
 #include <yoga/YGNode.h>
-
-#include "util/TestUtil.h"
-
-using facebook::yoga::test::TestUtil;
 
 TEST(YogaTest, cloning_shared_root) {
   const YGConfigRef config = YGConfigNew();
@@ -48,14 +43,14 @@ TEST(YogaTest, cloning_shared_root) {
   const YGNodeRef root2 = YGNodeClone(root);
   YGNodeStyleSetWidth(root2, 100);
 
-  ASSERT_EQ(2u, YGNodeGetChildCount(root2));
+  ASSERT_EQ(2, YGNodeGetChildCount(root2));
   // The children should have referential equality at this point.
   ASSERT_EQ(root_child0, YGNodeGetChild(root2, 0));
   ASSERT_EQ(root_child1, YGNodeGetChild(root2, 1));
 
   YGNodeCalculateLayout(root2, YGUndefined, YGUndefined, YGDirectionLTR);
 
-  ASSERT_EQ(2u, YGNodeGetChildCount(root2));
+  ASSERT_EQ(2, YGNodeGetChildCount(root2));
   // Relayout with no changed input should result in referential equality.
   ASSERT_EQ(root_child0, YGNodeGetChild(root2, 0));
   ASSERT_EQ(root_child1, YGNodeGetChild(root2, 1));
@@ -64,7 +59,7 @@ TEST(YogaTest, cloning_shared_root) {
   YGNodeStyleSetHeight(root2, 200);
   YGNodeCalculateLayout(root2, YGUndefined, YGUndefined, YGDirectionLTR);
 
-  ASSERT_EQ(2u, YGNodeGetChildCount(root2));
+  ASSERT_EQ(2, YGNodeGetChildCount(root2));
   // Relayout with changed input should result in cloned children.
   const YGNodeRef root2_child0 = YGNodeGetChild(root2, 0);
   const YGNodeRef root2_child1 = YGNodeGetChild(root2, 1);
@@ -114,26 +109,26 @@ TEST(YogaTest, mutating_children_of_a_clone_clones_only_after_layout) {
   const YGConfigRef config = YGConfigNew();
 
   const YGNodeRef root = YGNodeNewWithConfig(config);
-  ASSERT_EQ(0u, YGNodeGetChildCount(root));
+  ASSERT_EQ(0, YGNodeGetChildCount(root));
 
   const YGNodeRef root2 = YGNodeClone(root);
-  ASSERT_EQ(0u, YGNodeGetChildCount(root2));
+  ASSERT_EQ(0, YGNodeGetChildCount(root2));
 
   const YGNodeRef root2_child0 = YGNodeNewWithConfig(config);
   YGNodeInsertChild(root2, root2_child0, 0);
 
-  ASSERT_EQ(0u, YGNodeGetChildCount(root));
-  ASSERT_EQ(1u, YGNodeGetChildCount(root2));
+  ASSERT_EQ(0, YGNodeGetChildCount(root));
+  ASSERT_EQ(1, YGNodeGetChildCount(root2));
 
   const YGNodeRef root3 = YGNodeClone(root2);
-  ASSERT_EQ(1u, YGNodeGetChildCount(root2));
-  ASSERT_EQ(1u, YGNodeGetChildCount(root3));
+  ASSERT_EQ(1, YGNodeGetChildCount(root2));
+  ASSERT_EQ(1, YGNodeGetChildCount(root3));
   ASSERT_EQ(YGNodeGetChild(root2, 0), YGNodeGetChild(root3, 0));
 
   const YGNodeRef root3_child1 = YGNodeNewWithConfig(config);
   YGNodeInsertChild(root3, root3_child1, 1);
-  ASSERT_EQ(1u, YGNodeGetChildCount(root2));
-  ASSERT_EQ(2u, YGNodeGetChildCount(root3));
+  ASSERT_EQ(1, YGNodeGetChildCount(root2));
+  ASSERT_EQ(2, YGNodeGetChildCount(root3));
   ASSERT_EQ(root3_child1, YGNodeGetChild(root3, 1));
   ASSERT_EQ(YGNodeGetChild(root2, 0), YGNodeGetChild(root3, 0));
 
@@ -141,8 +136,8 @@ TEST(YogaTest, mutating_children_of_a_clone_clones_only_after_layout) {
   ASSERT_EQ(root3_child1, YGNodeGetChild(root4, 1));
 
   YGNodeRemoveChild(root4, root3_child1);
-  ASSERT_EQ(2u, YGNodeGetChildCount(root3));
-  ASSERT_EQ(1u, YGNodeGetChildCount(root4));
+  ASSERT_EQ(2, YGNodeGetChildCount(root3));
+  ASSERT_EQ(1, YGNodeGetChildCount(root4));
   ASSERT_EQ(YGNodeGetChild(root3, 0), YGNodeGetChild(root4, 0));
 
   YGNodeCalculateLayout(root4, YGUndefined, YGUndefined, YGDirectionLTR);
@@ -200,7 +195,7 @@ TEST(YogaTest, cloning_two_levels) {
   YGNodeRemoveAllChildren(root2);
   YGNodeInsertChild(root2, root2_child0, 0);
   YGNodeInsertChild(root2, root2_child1, 1);
-  ASSERT_EQ(2u, YGNodeGetChildCount(root2));
+  ASSERT_EQ(2, YGNodeGetChildCount(root2));
 
   YGNodeCalculateLayout(root2, YGUndefined, YGUndefined, YGDirectionLTR);
 
@@ -225,7 +220,7 @@ TEST(YogaTest, cloning_two_levels) {
 }
 
 TEST(YogaTest, cloning_and_freeing) {
-  TestUtil::startCountingNodes();
+  const int32_t initialInstanceCount = YGNodeGetInstanceCount();
 
   const YGConfigRef config = YGConfigNew();
 
@@ -254,7 +249,7 @@ TEST(YogaTest, cloning_and_freeing) {
 
   YGConfigFree(config);
 
-  ASSERT_EQ(0, TestUtil::stopCountingNodes());
+  ASSERT_EQ(initialInstanceCount, YGNodeGetInstanceCount());
 }
 
 TEST(YogaTest, mixed_shared_and_owned_children) {

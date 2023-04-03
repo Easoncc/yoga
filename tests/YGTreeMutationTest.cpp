@@ -1,10 +1,9 @@
-/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * This source code is licensed under the MIT license found in the LICENSE
+ * file in the root directory of this source tree.
  */
-
 #include <gtest/gtest.h>
 #include <yoga/Yoga.h>
 
@@ -29,8 +28,8 @@ TEST(YogaTest, set_children_adds_children_to_parent) {
   const std::vector<YGNodeRef> expectedChildren = {root_child0, root_child1};
   ASSERT_EQ(children, expectedChildren);
 
-  const std::vector<YGNodeRef> owners = {
-      YGNodeGetOwner(root_child0), YGNodeGetOwner(root_child1)};
+  const std::vector<YGNodeRef> owners = {YGNodeGetOwner(root_child0),
+                                         YGNodeGetOwner(root_child1)};
   const std::vector<YGNodeRef> expectedOwners = {root, root};
   ASSERT_EQ(owners, expectedOwners);
 
@@ -49,8 +48,8 @@ TEST(YogaTest, set_children_to_empty_removes_old_children) {
   const std::vector<YGNodeRef> expectedChildren = {};
   ASSERT_EQ(children, expectedChildren);
 
-  const std::vector<YGNodeRef> owners = {
-      YGNodeGetOwner(root_child0), YGNodeGetOwner(root_child1)};
+  const std::vector<YGNodeRef> owners = {YGNodeGetOwner(root_child0),
+                                         YGNodeGetOwner(root_child1)};
   const std::vector<YGNodeRef> expectedOwners = {nullptr, nullptr};
   ASSERT_EQ(owners, expectedOwners);
 
@@ -73,8 +72,8 @@ TEST(YogaTest, set_children_replaces_non_common_children) {
   const std::vector<YGNodeRef> expectedChildren = {root_child2, root_child3};
   ASSERT_EQ(children, expectedChildren);
 
-  const std::vector<YGNodeRef> owners = {
-      YGNodeGetOwner(root_child0), YGNodeGetOwner(root_child1)};
+  const std::vector<YGNodeRef> owners = {YGNodeGetOwner(root_child0),
+                                         YGNodeGetOwner(root_child1)};
   const std::vector<YGNodeRef> expectedOwners = {nullptr, nullptr};
   ASSERT_EQ(owners, expectedOwners);
 
@@ -100,11 +99,10 @@ TEST(YogaTest, set_children_keeps_and_reorders_common_children) {
       root_child2, root_child1, root_child3};
   ASSERT_EQ(children, expectedChildren);
 
-  const std::vector<YGNodeRef> owners = {
-      YGNodeGetOwner(root_child0),
-      YGNodeGetOwner(root_child1),
-      YGNodeGetOwner(root_child2),
-      YGNodeGetOwner(root_child3)};
+  const std::vector<YGNodeRef> owners = {YGNodeGetOwner(root_child0),
+                                         YGNodeGetOwner(root_child1),
+                                         YGNodeGetOwner(root_child2),
+                                         YGNodeGetOwner(root_child3)};
   const std::vector<YGNodeRef> expectedOwners = {nullptr, root, root, root};
   ASSERT_EQ(owners, expectedOwners);
 

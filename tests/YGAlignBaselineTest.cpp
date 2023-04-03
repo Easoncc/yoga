@@ -1,10 +1,9 @@
-/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * This source code is licensed under the MIT license found in the LICENSE
+ * file in the root directory of this source tree.
  */
-
 #include <gtest/gtest.h>
 #include <yoga/YGNode.h>
 #include <yoga/Yoga.h>
@@ -22,7 +21,10 @@ static YGSize _measure1(
     YGMeasureMode widthMode,
     float height,
     YGMeasureMode heightMode) {
-  return YGSize{42, 50};
+  return YGSize{
+      .width = 42,
+      .height = 50,
+  };
 }
 
 static YGSize _measure2(
@@ -31,7 +33,10 @@ static YGSize _measure2(
     YGMeasureMode widthMode,
     float height,
     YGMeasureMode heightMode) {
-  return YGSize{279, 126};
+  return YGSize{
+      .width = 279,
+      .height = 126,
+  };
 }
 
 static YGNodeRef createYGNode(
@@ -45,8 +50,8 @@ static YGNodeRef createYGNode(
   if (alignBaseline) {
     YGNodeStyleSetAlignItems(node, YGAlignBaseline);
   }
-  YGNodeStyleSetWidth(node, (float) width);
-  YGNodeStyleSetHeight(node, (float) height);
+  YGNodeStyleSetWidth(node, width);
+  YGNodeStyleSetHeight(node, height);
   return node;
 }
 

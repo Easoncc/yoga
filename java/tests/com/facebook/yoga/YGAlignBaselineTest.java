@@ -1,10 +1,9 @@
-/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * This source code is licensed under the MIT license found in the LICENSE
+ * file in the root directory of this source tree.
  */
-
 package com.facebook.yoga;
 
 import static org.junit.Assert.assertEquals;
@@ -33,7 +32,7 @@ public class YGAlignBaselineTest {
 
   @Test
   public void test_align_baseline_parent_using_child_in_column_as_reference() {
-    YogaConfig config = YogaConfigFactory.create();
+    YogaConfig config = new YogaConfig();
 
     final YogaNode root = createYGNode(config, YogaFlexDirection.ROW, 1000f, 1000f, true);
 
@@ -70,7 +69,7 @@ public class YGAlignBaselineTest {
 
   @Test
   public void test_align_baseline_parent_using_child_in_row_as_reference() {
-    YogaConfig config = YogaConfigFactory.create();
+    YogaConfig config = new YogaConfig();
 
     final YogaNode root = createYGNode(config, YogaFlexDirection.ROW, 1000f, 1000f, true);
 

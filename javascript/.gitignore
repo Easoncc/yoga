@@ -1,3 +1,10 @@
-/build
+node_modules
+
+*.gypi
+!/final-flags.gypi
+
 /dist
-/node_modules
+/build/*
+/sources/yoga
+
+npm-debug.log*

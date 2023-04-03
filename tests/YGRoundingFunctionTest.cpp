@@ -1,10 +1,9 @@
-/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * This source code is licensed under the MIT license found in the LICENSE
+ * file in the root directory of this source tree.
  */
-
 #include <gtest/gtest.h>
 #include <yoga/Yoga.h>
 #include <yoga/Yoga-internal.h>
@@ -48,7 +47,7 @@ static YGSize measureText(
     YGMeasureMode widthMode,
     float height,
     YGMeasureMode heightMode) {
-  return YGSize{10, 10};
+  return (YGSize){.width = 10, .height = 10};
 }
 
 // Regression test for https://github.com/facebook/yoga/issues/824
@@ -57,7 +56,7 @@ TEST(YogaTest, consistent_rounding_during_repeated_layouts) {
   YGConfigSetPointScaleFactor(config, 2);
 
   const YGNodeRef root = YGNodeNewWithConfig(config);
-  YGNodeStyleSetMargin(root, YGEdgeTop, -1.49f);
+  YGNodeStyleSetMargin(root, YGEdgeTop, -1.49);
   YGNodeStyleSetWidth(root, 500);
   YGNodeStyleSetHeight(root, 500);
 
@@ -70,7 +69,7 @@ TEST(YogaTest, consistent_rounding_during_repeated_layouts) {
 
   for (int i = 0; i < 5; i++) {
     // Dirty the tree so YGRoundToPixelGrid runs again
-    YGNodeStyleSetMargin(root, YGEdgeLeft, (float) (i + 1));
+    YGNodeStyleSetMargin(root, YGEdgeLeft, i + 1);
 
     YGNodeCalculateLayout(root, YGUndefined, YGUndefined, YGDirectionLTR);
     ASSERT_FLOAT_EQ(10, YGNodeLayoutGetHeight(node1));

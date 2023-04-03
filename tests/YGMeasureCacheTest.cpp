@@ -1,10 +1,9 @@
-/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * This source code is licensed under the MIT license found in the LICENSE
+ * file in the root directory of this source tree.
  */
-
 #include <gtest/gtest.h>
 #include <yoga/YGNode.h>
 #include <yoga/Yoga.h>
@@ -19,8 +18,8 @@ static YGSize _measureMax(
   (*measureCount)++;
 
   return YGSize{
-      widthMode == YGMeasureModeUndefined ? 10 : width,
-      heightMode == YGMeasureModeUndefined ? 10 : height,
+      .width = widthMode == YGMeasureModeUndefined ? 10 : width,
+      .height = heightMode == YGMeasureModeUndefined ? 10 : height,
   };
 }
 
@@ -33,11 +32,11 @@ static YGSize _measureMin(
   int* measureCount = (int*) node->getContext();
   *measureCount = *measureCount + 1;
   return YGSize{
-      widthMode == YGMeasureModeUndefined ||
+      .width = widthMode == YGMeasureModeUndefined ||
               (widthMode == YGMeasureModeAtMost && width > 10)
           ? 10
           : width,
-      heightMode == YGMeasureModeUndefined ||
+      .height = heightMode == YGMeasureModeUndefined ||
               (heightMode == YGMeasureModeAtMost && height > 10)
           ? 10
           : height,
@@ -55,7 +54,10 @@ static YGSize _measure_84_49(
     (*measureCount)++;
   }
 
-  return YGSize{84.f, 49.f};
+  return YGSize{
+      .width = 84.f,
+      .height = 49.f,
+  };
 }
 
 TEST(YogaTest, measure_once_single_flexible_child) {

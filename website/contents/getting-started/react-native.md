@@ -1,5 +1,5 @@
 ---
-path: "https://reactnative.dev/docs/getting-started"
+path: "http://facebook.github.io/react-native/docs/getting-started.html"
 title: "React Native"
 redirect: true
 ---

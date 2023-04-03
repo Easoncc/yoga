@@ -1,10 +1,9 @@
-/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * This source code is licensed under the MIT license found in the LICENSE
+ * file in the root directory of this source tree.
  */
-
 #include <gtest/gtest.h>
 #include <yoga/Yoga.h>
 #include <array>
@@ -29,13 +28,12 @@ TEST(YogaTest, computed_layout_margin) {
 }
 
 TEST(YogaTest, margin_side_overrides_horizontal_and_vertical) {
-  const std::array<YGEdge, 6> edges = {
-      {YGEdgeTop,
-       YGEdgeBottom,
-       YGEdgeStart,
-       YGEdgeEnd,
-       YGEdgeLeft,
-       YGEdgeRight}};
+  const std::array<YGEdge, 6> edges = {{YGEdgeTop,
+                                        YGEdgeBottom,
+                                        YGEdgeStart,
+                                        YGEdgeEnd,
+                                        YGEdgeLeft,
+                                        YGEdgeRight}};
 
   for (float edgeValue = 0; edgeValue < 2; ++edgeValue) {
     for (const auto& edge : edges) {
@@ -59,13 +57,12 @@ TEST(YogaTest, margin_side_overrides_horizontal_and_vertical) {
 }
 
 TEST(YogaTest, margin_side_overrides_all) {
-  const std::array<YGEdge, 6> edges = {
-      {YGEdgeTop,
-       YGEdgeBottom,
-       YGEdgeStart,
-       YGEdgeEnd,
-       YGEdgeLeft,
-       YGEdgeRight}};
+  const std::array<YGEdge, 6> edges = {{YGEdgeTop,
+                                        YGEdgeBottom,
+                                        YGEdgeStart,
+                                        YGEdgeEnd,
+                                        YGEdgeLeft,
+                                        YGEdgeRight}};
 
   for (float edgeValue = 0; edgeValue < 2; ++edgeValue) {
     for (const auto& edge : edges) {

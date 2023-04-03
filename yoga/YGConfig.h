@@ -1,18 +1,15 @@
-/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * This source code is licensed under the MIT license found in the LICENSE
+ * file in the root directory of this source tree.
  */
-
 #pragma once
-
-#ifdef __cplusplus
-
+#include "YGMarker.h"
 #include "Yoga-internal.h"
 #include "Yoga.h"
 
-struct YOGA_EXPORT YGConfig {
+struct YGConfig {
   using LogWithContextFn = int (*)(
       YGConfigRef config,
       YGNodeRef node,
@@ -47,6 +44,7 @@ public:
   std::array<bool, facebook::yoga::enums::count<YGExperimentalFeature>()>
       experimentalFeatures = {};
   void* context = nullptr;
+  YGMarkerCallbacks markerCallbacks = {nullptr, nullptr};
 
   YGConfig(YGLogger logger);
   void log(YGConfig*, YGNode*, YGLogLevel, void*, const char*, va_list);
@@ -58,7 +56,9 @@ public:
     logger_.withContext = logger;
     loggerUsesContext_ = true;
   }
-  void setLogger(std::nullptr_t) { setLogger(YGLogger{nullptr}); }
+  void setLogger(std::nullptr_t) {
+    setLogger(YGLogger{nullptr});
+  }
 
   YGNodeRef cloneNode(
       YGNodeRef node,
@@ -77,5 +77,3 @@ public:
     setCloneNodeCallback(YGCloneNodeFunc{nullptr});
   }
 };
-
-#endif

@@ -1,10 +1,9 @@
-/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * This source code is licensed under the MIT license found in the LICENSE
+ * file in the root directory of this source tree.
  */
-
 package com.facebook.yoga.android;
 
 import java.util.HashMap;
@@ -18,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.facebook.yoga.YogaNode;
-import com.facebook.yoga.YogaNodeFactory;
 
 /**
  * Much like a {@link YogaLayout}, except this class does not render itself (the container) to the
@@ -34,7 +32,7 @@ public class VirtualYogaLayout extends ViewGroup {
 
   final private List<View> mChildren = new LinkedList<>();
   final private Map<View, YogaNode> mYogaNodes = new HashMap<>();
-  final private YogaNode mYogaNode = YogaNodeFactory.create();
+  final private YogaNode mYogaNode = YogaNode.create();
 
   public VirtualYogaLayout(Context context) {
     super(context);
@@ -74,7 +72,7 @@ public class VirtualYogaLayout extends ViewGroup {
       return;
     }
 
-    YogaNode node = YogaNodeFactory.create();
+    YogaNode node = YogaNode.create();
     YogaLayout.LayoutParams lp = new YogaLayout.LayoutParams(params);
     YogaLayout.applyLayoutParams(lp, node, child);
     node.setData(child);
